@@ -2,6 +2,8 @@ import os
 from wsgiref import simple_server
 from flask import Flask
 from flask import Response
+import numpy as np
+
 app = Flask(__name__)
 
 
