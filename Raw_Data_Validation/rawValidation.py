@@ -10,6 +10,8 @@ from application_logging.logger import App_Logger
         3. Validate Filename against manual regex ==> validationOfFilename()
             a. Delete existing bad data folder ==> deleteExistingBadDataFolder()
             b. Delete existing good data folder ==> deleteExistingGoodDataFolder()
+            c. Create bad data folder ==> createBadDataFolder()
+            d. Create good data folder ==> createGoodDataFolder()
     Company: IT Department, SRM IST
     Version: 1.0
     Revision: NIL
@@ -57,7 +59,12 @@ class Raw_Data_Validation:
         # Delete Good and Bad data folder if existing
         self.deleteExistingBadDataFolder()
         self.deleteExistingGoodDataFolder()
+        self.createBadDataFolder()
+        self.createGoodDataFolder()
 
+#########################################################
+#               Supporting methods                      #
+#########################################################
     def deleteExistingBadDataFolder(self):
         try:
             path = 'Training_Raw_files_validated/'
@@ -86,6 +93,28 @@ class Raw_Data_Validation:
             file.close()
             raise OSError
 
+    def createBadDataFolder(self):
+        try:
+            path = os.path.join("Training_Raw_files_validated/", "Bad_Raw/")
+            if not os.path.isdir(path):
+                os.makedirs(path)
 
+        except OSError as ex:
+            file = open("Training_Logs/GeneralLog.txt", 'a+')
+            self.logger.log(file,"Error while creating Bad Data Directory %s:" % ex)
+            file.close()
+            raise OSError
+
+    def createGoodDataFolder(self):
+        try:
+            path = os.path.join("Training_Raw_files_validated/", "Good_Raw/")
+            if not os.path.isdir(path):
+                os.makedirs(path)
+
+        except OSError as ex:
+            file = open("Training_Logs/GeneralLog.txt", 'a+')
+            self.logger.log(file,"Error while creating Good Data Directory %s:" % ex)
+            file.close()
+            raise OSError
 
 
