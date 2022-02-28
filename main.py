@@ -3,6 +3,7 @@ from wsgiref import simple_server
 from flask import Flask
 from flask import Response
 
+from validation.data_valid import data_validation
 
 app = Flask(__name__)
 
@@ -13,7 +14,12 @@ app = Flask(__name__)
 def trainRouteClient():
 
     try:
-        path = 'Training_Batch_Files'
+        batch_files_loc = 'Training_Batch_Files'
+        main_log = "Training_Logs/Training_Main_Log.txt"
+        schemaValidationLog = "Training_Logs/valuesfromSchemaValidationLog.txt"
+
+        train_val_obj = data_validation(batch_files_loc, main_log)
+        train_val_obj.data_validation_process()
 
     except Exception as e:
 
