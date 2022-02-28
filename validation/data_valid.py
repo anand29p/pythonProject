@@ -14,5 +14,11 @@ class data_validation:
             # extracting values from prediction schema in schema_training.json
             LengthOfDateStampInFile, LengthOfTimeStampInFile, column_names, noofcolumns =  self.rawdata.valuesFromSchemaFile()
 
+            # Manual Regex creation
+            regex = self.rawdata.manualRegexCreation()
+
+            # validating filename of prediction files
+            self.raw_data.validationOfFilename(regex, LengthOfDateStampInFile, LengthOfTimeStampInFile)
+
         except Exception as e:
             raise e
