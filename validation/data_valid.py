@@ -18,7 +18,7 @@ class data_validation:
             regex = self.rawdata.manualRegexCreation()
 
             # validating filename of prediction files
-            self.raw_data.validationOfFilename(regex, LengthOfDateStampInFile, LengthOfTimeStampInFile)
+            self.rawdata.validationOfFilename(regex, LengthOfDateStampInFile, LengthOfTimeStampInFile)
 
         except Exception as e:
             raise e
