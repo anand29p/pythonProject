@@ -17,8 +17,14 @@ class data_validation:
             # Manual Regex creation
             regex = self.rawdata.manualRegexCreation()
 
-            # validating filename of prediction files
-            self.rawdata.validationOfFilename(regex, LengthOfDateStampInFile, LengthOfTimeStampInFile)
+            # Delete Good and Bad data folder if existing and create them afresh
+            self.rawdata.deleteExistingBadDataFolder()
+            self.rawdata.deleteExistingGoodDataFolder()
+            self.rawdata.createBadDataFolder()
+            self.rawdata.createGoodDataFolder()
+
+            # validating filename against manual regex
+            self.rawdata.fileTransferToGoodAndBadDataFolder(regex, LengthOfDateStampInFile, LengthOfTimeStampInFile)
 
         except Exception as e:
             raise e

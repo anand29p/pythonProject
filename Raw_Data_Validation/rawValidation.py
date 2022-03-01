@@ -1,6 +1,8 @@
 import json
 import os
 import shutil
+import re
+from os import listdir
 
 from application_logging.logger import App_Logger
 """"
@@ -12,6 +14,7 @@ from application_logging.logger import App_Logger
             b. Delete existing good data folder ==> deleteExistingGoodDataFolder()
             c. Create bad data folder ==> createBadDataFolder()
             d. Create good data folder ==> createGoodDataFolder()
+            e. Transfer Good and Bad files to respective folders ==> fileTransferToGoodAndBadDataFolder()
     Company: IT Department, SRM IST
     Version: 1.0
     Revision: NIL
@@ -20,7 +23,7 @@ class Raw_Data_Validation:
     def __init__(self, batch_files_loc):
         self.logger = App_Logger()
         self.schemaPath = "schema_training.json"
-
+        self.Batch_Directory = batch_files_loc
     def valuesFromSchemaFile(self):
         '''
             The method tries to fetch the values from schema file schema_training.json
@@ -55,16 +58,6 @@ class Raw_Data_Validation:
         # regex = "['wafer\_']+[\d_]+[\d]+['.csv'}"
         return regex
 
-    def validationOfFilename(self, regex, LengthOfDateStampInFile, LengthOfTimeStampInFile):
-        # Delete Good and Bad data folder if existing
-        self.deleteExistingBadDataFolder()
-        self.deleteExistingGoodDataFolder()
-        self.createBadDataFolder()
-        self.createGoodDataFolder()
-
-#########################################################
-#               Supporting methods                      #
-#########################################################
     def deleteExistingBadDataFolder(self):
         try:
             path = 'Training_Raw_files_validated/'
@@ -117,4 +110,33 @@ class Raw_Data_Validation:
             file.close()
             raise OSError
 
+    def fileTransferToGoodAndBadDataFolder(self, regex, LengthOfDateStampInFile, LengthOfTimeStampInFile):
+        onlyfiles = [f for f in listdir(self.Batch_Directory)]
+        try:
+            f = open("Training_Logs/nameValidationLog.txt", 'a+')
+            for filename in onlyfiles:
+                if (re.match(regex, filename)):
+                    splitAtDot = re.split('.csv', filename)
+                    splitAtDot = (re.split('_', splitAtDot[0]))
+                    if len(splitAtDot[1]) == LengthOfDateStampInFile:
+                        if len(splitAtDot[2]) == LengthOfTimeStampInFile:
+                            shutil.copy("Training_Batch_Files/" + filename, "Training_Raw_files_validated/Good_Raw")
+                            self.logger.log(f, "Valid File name!! File moved to GoodRaw Folder :: %s" % filename)
 
+                        else:
+                            shutil.copy("Training_Batch_Files/" + filename, "Training_Raw_files_validated/Bad_Raw")
+                            self.logger.log(f, "Invalid File Name!! File moved to Bad Raw Folder :: %s" % filename)
+                    else:
+                        shutil.copy("Training_Batch_Files/" + filename, "Training_Raw_files_validated/Bad_Raw")
+                        self.logger.log(f, "Invalid File Name!! File moved to Bad Raw Folder :: %s" % filename)
+                else:
+                    shutil.copy("Training_Batch_Files/" + filename, "Training_Raw_files_validated/Bad_Raw")
+                    self.logger.log(f, "Invalid File Name!! File moved to Bad Raw Folder :: %s" % filename)
+
+            f.close()
+
+        except Exception as e:
+            f = open("Training_Logs/nameValidationLog.txt", 'a+')
+            self.logger.log(f, "Error occured while validating FileName %s" % e)
+            f.close()
+            raise e
