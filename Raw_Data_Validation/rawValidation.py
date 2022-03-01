@@ -3,6 +3,7 @@ import os
 import shutil
 import re
 from os import listdir
+import pandas as pd
 
 from application_logging.logger import App_Logger
 """"
@@ -110,7 +111,7 @@ class Raw_Data_Validation:
             file.close()
             raise OSError
 
-    def fileTransferToGoodAndBadDataFolder(self, regex, LengthOfDateStampInFile, LengthOfTimeStampInFile):
+    def fileNameValidationAndTransferToGoodAndBadDataFolder(self, regex, LengthOfDateStampInFile, LengthOfTimeStampInFile):
         onlyfiles = [f for f in listdir(self.Batch_Directory)]
         try:
             f = open("Training_Logs/nameValidationLog.txt", 'a+')
@@ -140,3 +141,27 @@ class Raw_Data_Validation:
             self.logger.log(f, "Error occured while validating FileName %s" % e)
             f.close()
             raise e
+
+    def validateColumnLength(self, noofcolumns):
+        try:
+            f = open("Training_Logs/columnValidationLog.txt", 'a+')
+            self.logger.log(f,"Column Length Validation Started!!")
+            for file in listdir('Training_Raw_files_validated/Good_Raw/'):
+                csv = pd.read_csv("Training_Raw_files_validated/Good_Raw/" + file)
+                if csv.shape[1] == noofcolumns: # csv.shape gives row and cols
+                    pass
+                else:
+                    shutil.move("Training_Raw_files_validated/Good_Raw/" + file, "Training_Raw_files_validated/Bad_Raw")
+                    self.logger.log(f, "Invalid Column Length for the file!! File moved to Bad Raw Folder :: %s" % file)
+            self.logger.log(f, "Column Length Validation Completed!!")
+        except OSError:
+            f = open("Training_Logs/columnValidationLog.txt", 'a+')
+            self.logger.log(f, "Error Occured while moving the file :: %s" % OSError)
+            f.close()
+            raise OSError
+        except Exception as e:
+            f = open("Training_Logs/columnValidationLog.txt", 'a+')
+            self.logger.log(f, "Error Occured:: %s" % e)
+            f.close()
+            raise e
+        f.close()

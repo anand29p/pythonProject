@@ -24,7 +24,10 @@ class data_validation:
             self.rawdata.createGoodDataFolder()
 
             # validating filename against manual regex
-            self.rawdata.fileTransferToGoodAndBadDataFolder(regex, LengthOfDateStampInFile, LengthOfTimeStampInFile)
+            self.rawdata.fileNameValidationAndTransferToGoodAndBadDataFolder(regex, LengthOfDateStampInFile, LengthOfTimeStampInFile)
+
+            # validating column length in the file
+            self.rawdata.validateColumnLength(noofcolumns)
 
         except Exception as e:
             raise e
