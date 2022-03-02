@@ -13,3 +13,6 @@
 2022-03-01/07:37:42		Start of Validation on files!!
 2022-03-01/07:41:49		Start of Validation on files!!
 2022-03-01/10:32:15		Start of Validation on files!!
+2022-03-02/15:23:00		Start of Validation on files!!
+2022-03-02/15:28:59		Start of Validation on files!!
+2022-03-02/15:29:05		Raw Data Validation Complete!!

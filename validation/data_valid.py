@@ -29,5 +29,9 @@ class data_validation:
             # validating column length in the file
             self.rawdata.validateColumnLength(noofcolumns)
 
+            # validating if any column has all values missing
+            self.rawdata.validateMissingValuesInWholeColumn()
+            self.logger.log(self.file_object, "Raw Data Validation Complete!!")
+
         except Exception as e:
             raise e

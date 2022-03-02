@@ -165,3 +165,34 @@ class Raw_Data_Validation:
             f.close()
             raise e
         f.close()
+
+    def validateMissingValuesInWholeColumn(self):
+        try:
+            f = open("Training_Logs/missingValuesInColumn.txt", 'a+')
+            self.logger.log(f,"Missing Values Validation Started!!")
+
+            for file in listdir('Training_Raw_files_validated/Good_Raw/'):
+                csv = pd.read_csv("Training_Raw_files_validated/Good_Raw/" + file)
+                count = 0
+                for columns in csv:
+                    if (csv[columns].isnull().sum() == len(csv[columns])):
+                        count+=1
+                        shutil.move("Training_Raw_files_validated/Good_Raw/" + file,
+                                    "Training_Raw_files_validated/Bad_Raw")
+                        self.logger.log(f,"Invalid Column Length for the file!! File moved to Bad Raw Folder :: %s" % file)
+                        break
+                if count==0:
+                    csv.rename(columns={"Unnamed: 0": "Wafer"}, inplace=True)
+                    csv.to_csv("Training_Raw_files_validated/Good_Raw/" + file, index=None, header=True)
+        except OSError:
+            f = open("Training_Logs/missingValuesInColumn.txt", 'a+')
+            self.logger.log(f, "Error Occured while moving the file :: %s" % OSError)
+            f.close()
+            raise OSError
+        except Exception as e:
+            f = open("Training_Logs/missingValuesInColumn.txt", 'a+')
+            self.logger.log(f, "Error Occured:: %s" % e)
+            f.close()
+            raise e
+        f.close()
+

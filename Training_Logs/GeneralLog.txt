@@ -14,3 +14,7 @@
 2022-03-01/07:41:49		GoodRaw directory deleted before starting validation!!!
 2022-03-01/10:32:15		BadRaw directory deleted before starting validation!!!
 2022-03-01/10:32:15		GoodRaw directory deleted before starting validation!!!
+2022-03-02/15:23:00		BadRaw directory deleted before starting validation!!!
+2022-03-02/15:23:00		GoodRaw directory deleted before starting validation!!!
+2022-03-02/15:28:59		BadRaw directory deleted before starting validation!!!
+2022-03-02/15:28:59		GoodRaw directory deleted before starting validation!!!
