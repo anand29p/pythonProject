@@ -41,3 +41,13 @@
 2022-03-03/11:27:39		Table creation Completed!!
 2022-03-03/11:27:39		Insertion of Data into Table started!!!!
 2022-03-03/11:28:48		Insertion in Table completed!!!
+2022-03-03/12:19:46		Start of Validation on files!!
+2022-03-03/12:19:52		Raw Data Validation Complete!!
+2022-03-03/12:19:52		Starting Data Transforamtion!!
+2022-03-03/12:20:03		DataTransformation Completed!!!
+2022-03-03/12:20:03		Creating Training_Database and tables on the basis of given schema!!!
+2022-03-03/12:20:03		Table creation Completed!!
+2022-03-03/12:20:03		Insertion of Data into Table started!!!!
+2022-03-03/12:21:19		Insertion in Table completed!!!
+2022-03-03/12:21:19		Deleting Good Data Folder!!!
+2022-03-03/12:21:19		Good_Data folder deleted!!!

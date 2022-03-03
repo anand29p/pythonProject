@@ -2,6 +2,8 @@ from Data_Transform.DataTransformation import dataTransform
 from application_logging.logger import App_Logger
 from Raw_Data_Validation.rawValidation import Raw_Data_Validation
 from Database.dbOperations import DBOperations
+from post_db import PostDBOperations
+
 class data_validation:
     def __init__(self,batch_files_loc, main_log):
         self.file_object = open(main_log, 'a+')
@@ -9,6 +11,7 @@ class data_validation:
         self.rawdata = Raw_Data_Validation(batch_files_loc)
         self.dataTransform = dataTransform()
         self.dbOperation = DBOperations()
+        self.postdb = PostDBOperations()
 
     def data_validation_process(self):
         try:
@@ -50,6 +53,11 @@ class data_validation:
             self.dbOperation.insertIntoTableGoodData('Training')
             self.logger.log(self.file_object, "Insertion in Table completed!!!")
 
+#############################################################################################################
+            # Delete the good data folder after loading files in table
+            self.logger.log(self.file_object, "Deleting Good Data Folder!!!")
+            self.postdb.deleteExistingGoodDataTrainingFolder()
+            self.logger.log(self.file_object, "Good_Data folder deleted!!!")
 
         except Exception as e:
             raise e
