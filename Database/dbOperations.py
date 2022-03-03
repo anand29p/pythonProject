@@ -1,3 +1,5 @@
+import csv
+import shutil
 import sqlite3
 from os import listdir
 from application_logging.logger import App_Logger
@@ -6,8 +8,8 @@ class DBOperations:
     def __init__(self):
         self.logger = App_Logger()
         self.path = "Database/"
-        goodFilePath = "Training_Raw_files_validated/Good_Raw"
-        badFilePath = "Training_Raw_files_validated/Bad_Raw"
+        self.goodFilePath = "Training_Raw_files_validated/Good_Raw"
+        self.badFilePath = "Training_Raw_files_validated/Bad_Raw"
 
     def createTableDb(self, DatabaseName, column_names):
         try:
@@ -72,3 +74,36 @@ class DBOperations:
             file.close()
             raise ConnectionError
         return conn
+
+    def insertIntoTableGoodData(self, Database):
+        conn = self.dataBaseConnection(Database)
+        goodFilePath = self.goodFilePath
+        badFilePath = self.badFilePath
+        onlyfiles = [f for f in listdir(goodFilePath)]
+        log_file = open("Training_Logs/DbInsertLog.txt", 'a+')
+
+        for file in onlyfiles:
+            try:
+                with open(goodFilePath + '/' + file, "r") as f:
+                    next(f)
+                    reader = csv.reader(f, delimiter="\n")
+                    for line in enumerate(reader):
+                        for list_ in (line[1]):
+                            try:
+                                conn.execute('INSERT INTO Good_Raw_Data values ({values})'.format(values=(list_)))
+                                self.logger.log(log_file, " %s: File loaded successfully!!" % file)
+                                conn.commit()
+                            except Exception as e:
+                                raise e
+
+            except Exception as e:
+
+                conn.rollback()
+                self.logger.log(log_file, "Error while creating table: %s " % e)
+                shutil.move(goodFilePath + '/' + file, badFilePath)
+                self.logger.log(log_file, "File Moved Successfully %s" % file)
+                log_file.close()
+                conn.close()
+
+        conn.close()
+        log_file.close()

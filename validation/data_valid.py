@@ -35,17 +35,21 @@ class data_validation:
             # validating if any column has all values missing
             self.rawdata.validateMissingValuesInWholeColumn()
             self.logger.log(self.file_object, "Raw Data Validation Complete!!")
-
+#############################################################################################################
             self.logger.log(self.file_object, "Starting Data Transforamtion!!")
             # replacing blanks in the csv file with "Null" values to insert in table
             self.dataTransform.replaceMissingWithNull()
-
             self.logger.log(self.file_object, "DataTransformation Completed!!!")
-
+#############################################################################################################
             self.logger.log(self.file_object,"Creating Training_Database and tables on the basis of given schema!!!")
             # create database with given name, if present open the connection! Create table with columns given in schema
             self.dbOperation.createTableDb('Training', column_names)
             self.logger.log(self.file_object, "Table creation Completed!!")
+            self.logger.log(self.file_object, "Insertion of Data into Table started!!!!")
+            # insert csv files in the table
+            self.dbOperation.insertIntoTableGoodData('Training')
+            self.logger.log(self.file_object, "Insertion in Table completed!!!")
+
 
         except Exception as e:
             raise e

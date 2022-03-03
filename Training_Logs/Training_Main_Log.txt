@@ -26,3 +26,18 @@
 2022-03-03/06:05:51		DataTransformation Completed!!!
 2022-03-03/06:05:51		Creating Training_Database and tables on the basis of given schema!!!
 2022-03-03/06:06:40		Table creation Completed!!
+2022-03-03/11:17:59		Start of Validation on files!!
+2022-03-03/11:18:05		Raw Data Validation Complete!!
+2022-03-03/11:18:05		Starting Data Transforamtion!!
+2022-03-03/11:18:16		DataTransformation Completed!!!
+2022-03-03/11:18:16		Creating Training_Database and tables on the basis of given schema!!!
+2022-03-03/11:18:16		Table creation Completed!!
+2022-03-03/11:18:16		Insertion of Data into Table started!!!!
+2022-03-03/11:27:23		Start of Validation on files!!
+2022-03-03/11:27:28		Raw Data Validation Complete!!
+2022-03-03/11:27:28		Starting Data Transforamtion!!
+2022-03-03/11:27:39		DataTransformation Completed!!!
+2022-03-03/11:27:39		Creating Training_Database and tables on the basis of given schema!!!
+2022-03-03/11:27:39		Table creation Completed!!
+2022-03-03/11:27:39		Insertion of Data into Table started!!!!
+2022-03-03/11:28:48		Insertion in Table completed!!!
