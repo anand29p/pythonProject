@@ -1,13 +1,14 @@
 from Data_Transform.DataTransformation import dataTransform
 from application_logging.logger import App_Logger
 from Raw_Data_Validation.rawValidation import Raw_Data_Validation
-
+from Database.dbOperations import DBOperations
 class data_validation:
     def __init__(self,batch_files_loc, main_log):
         self.file_object = open(main_log, 'a+')
         self.logger = App_Logger()
         self.rawdata = Raw_Data_Validation(batch_files_loc)
         self.dataTransform = dataTransform()
+        self.dbOperation = DBOperations()
 
     def data_validation_process(self):
         try:
@@ -40,6 +41,11 @@ class data_validation:
             self.dataTransform.replaceMissingWithNull()
 
             self.logger.log(self.file_object, "DataTransformation Completed!!!")
+
+            self.logger.log(self.file_object,"Creating Training_Database and tables on the basis of given schema!!!")
+            # create database with given name, if present open the connection! Create table with columns given in schema
+            self.dbOperation.createTableDb('Training', column_names)
+            self.logger.log(self.file_object, "Table creation Completed!!")
 
         except Exception as e:
             raise e

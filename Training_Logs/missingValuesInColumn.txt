@@ -1,0 +1,32 @@
+2022-03-02/15:23:04		Missing Values Validation Started!!
+2022-03-02/15:23:04		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_07012020_041011.csv
+2022-03-02/15:23:05		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_20012020_090819.csv
+2022-03-02/15:23:06		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_22022020_041119.csv
+2022-03-02/15:23:06		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_23012020_011008.csv
+2022-03-02/15:23:06		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_28012020_051011.csv
+2022-03-02/15:23:08		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_29012020_060756.csv
+2022-03-02/15:23:08		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_31012020_090811.csv
+2022-03-02/15:29:01		Missing Values Validation Started!!
+2022-03-02/15:29:01		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_07012020_041011.csv
+2022-03-02/15:29:02		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_20012020_090819.csv
+2022-03-02/15:29:03		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_22022020_041119.csv
+2022-03-02/15:29:03		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_23012020_011008.csv
+2022-03-02/15:29:04		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_28012020_051011.csv
+2022-03-02/15:29:05		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_29012020_060756.csv
+2022-03-02/15:29:05		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_31012020_090811.csv
+2022-03-02/15:59:01		Missing Values Validation Started!!
+2022-03-02/15:59:02		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_07012020_041011.csv
+2022-03-02/15:59:02		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_20012020_090819.csv
+2022-03-02/15:59:03		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_22022020_041119.csv
+2022-03-02/15:59:03		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_23012020_011008.csv
+2022-03-02/15:59:04		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_28012020_051011.csv
+2022-03-02/15:59:05		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_29012020_060756.csv
+2022-03-02/15:59:05		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_31012020_090811.csv
+2022-03-03/06:05:33		Missing Values Validation Started!!
+2022-03-03/06:05:33		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_07012020_041011.csv
+2022-03-03/06:05:34		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_20012020_090819.csv
+2022-03-03/06:05:34		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_22022020_041119.csv
+2022-03-03/06:05:34		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_23012020_011008.csv
+2022-03-03/06:05:35		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_28012020_051011.csv
+2022-03-03/06:05:36		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_29012020_060756.csv
+2022-03-03/06:05:36		Invalid Column Length for the file!! File moved to Bad Raw Folder :: wafer_31012020_090811.csv
