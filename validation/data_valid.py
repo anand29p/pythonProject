@@ -59,5 +59,15 @@ class data_validation:
             self.postdb.deleteExistingGoodDataTrainingFolder()
             self.logger.log(self.file_object, "Good_Data folder deleted!!!")
 
+            self.logger.log(self.file_object, "Moving bad files to Archive and deleting Bad_Data folder!!!")
+            # Move the bad files to archive folder
+            self.postdb.moveBadFilesToArchiveBad()
+            self.logger.log(self.file_object, "Bad files moved to archive!! Bad folder Deleted!!")
+            self.logger.log(self.file_object, "Validation Operation completed!!")
+#############################################################################################################
+            self.logger.log(self.file_object, "Extracting csv file from table")
+            # export data in table to csvfile
+            self.dbOperation.selectingDatafromtableintocsv('Training')
+            self.file_object.close()
         except Exception as e:
             raise e

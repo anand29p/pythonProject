@@ -1,4 +1,5 @@
 import csv
+import os
 import shutil
 import sqlite3
 from os import listdir
@@ -107,3 +108,37 @@ class DBOperations:
 
         conn.close()
         log_file.close()
+
+    def selectingDatafromtableintocsv(self, Database):
+        self.fileFromDb = 'Training_FileFromDB/'
+        self.fileName = 'InputFile.csv'
+        log_file = open("Training_Logs/ExportToCsv.txt", 'a+')
+        try:
+            conn = self.dataBaseConnection(Database)
+            sqlSelect = "SELECT *  FROM Good_Raw_Data"
+            cursor = conn.cursor()
+
+            cursor.execute(sqlSelect)
+
+            results = cursor.fetchall()
+            # Get the headers of the csv file
+            headers = [i[0] for i in cursor.description]
+
+            # Make the CSV ouput directory
+            if not os.path.isdir(self.fileFromDb):
+                os.makedirs(self.fileFromDb)
+
+            # Open CSV file for writing.
+            csvFile = csv.writer(open(self.fileFromDb + self.fileName, 'w', newline=''), delimiter=',',
+                                 lineterminator='\r\n', quoting=csv.QUOTE_ALL, escapechar='\\')
+
+            # Add the headers and data to the CSV file.
+            csvFile.writerow(headers)
+            csvFile.writerows(results)
+
+            self.logger.log(log_file, "File exported successfully!!!")
+            log_file.close()
+
+        except Exception as e:
+            self.logger.log(log_file, "File exporting failed. Error : %s" % e)
+            log_file.close()
