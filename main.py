@@ -3,6 +3,7 @@ from wsgiref import simple_server
 from flask import Flask
 from flask import Response
 
+from trainingModel import trainModel
 from validation.data_valid import data_validation
 
 app = Flask(__name__)
@@ -20,6 +21,9 @@ def trainRouteClient():
 
         train_val_obj = data_validation(batch_files_loc, main_log)
         train_val_obj.data_validation_process()
+
+        trainModelObj = trainModel()  # object initialization
+        trainModelObj.trainingModel()  # training the model for the files in the table
 
     except Exception as e:
 
