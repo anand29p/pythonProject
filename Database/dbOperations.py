@@ -25,7 +25,6 @@ class DBOperations:
                 file = open("Training_Logs/DataBaseConnectionLog.txt", 'a+')
                 self.logger.log(file, "Closed %s database successfully" % DatabaseName)
                 file.close()
-
             else:
 
                 for key in column_names.keys():
