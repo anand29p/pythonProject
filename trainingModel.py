@@ -20,6 +20,9 @@ class trainModel:
             preprocessor = Preprocessor(self.file_object, self.logger)
             data = preprocessor.remove_columns(data, ['Wafer'])  # remove the unnamed column as it doesn't contribute to prediction.
 
+            # create separate features and labels
+            X, Y = preprocessor.separate_label_feature(data, label_column_name='Output')
+
         except Exception:
             # logging the unsuccessful Training
             self.logger.log(self.file_object, 'Unsuccessful End of Training')

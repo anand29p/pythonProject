@@ -17,3 +17,16 @@ class Preprocessor:
             self.logger.log(self.file_object, 'Column removal Unsuccessful. Exited the remove_columns method of the Preprocessor class')
             raise Exception()
 
+    def separate_label_feature(self, data, label_column_name):
+        self.logger.log(self.file_object,"Process of separating X and Y value starts")
+        try:
+            self.X = data.drop(labels = label_column_name, axis=1)
+            self.Y = data[label_column_name]
+            self.logger.log(self.file_object, "Separated X and Y")
+            return self.X, self.Y
+        except Exception as e:
+            self.logger.log(self.file_object, 'Exception occured in separate_label_feature method of the Preprocessor class. Exception message:  ' + str(e))
+            self.logger.log(self.file_object, 'Label Separation Unsuccessful. Exited the separate_label_feature method of the Preprocessor class')
+            raise Exception()
+
+
