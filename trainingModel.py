@@ -1,5 +1,6 @@
 from application_logging.logger import App_Logger
 from data_ingestion.dataLoader import Data_Getter
+from data_preprocessing.preprocessing import Preprocessor
 
 
 class trainModel:
@@ -14,6 +15,10 @@ class trainModel:
             # Getting the data from the source
             data_getter = Data_Getter(self.file_object, self.logger)
             data = data_getter.get_data()
+#########################################################################################################
+            # doing the data preprocessing
+            preprocessor = Preprocessor(self.file_object, self.logger)
+            data = preprocessor.remove_columns(data, ['Wafer'])  # remove the unnamed column as it doesn't contribute to prediction.
 
         except Exception:
             # logging the unsuccessful Training
