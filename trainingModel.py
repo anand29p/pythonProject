@@ -33,7 +33,9 @@ class trainModel:
             # check further which columns do not contribute to predictions
             # if the standard deviation for a column is zero, it means that the column has constant values
             cols_to_drop = preprocessor.get_columns_with_zero_std_deviation(X)
-
+            # drop the columns obtained above
+            if cols_to_drop:
+                X = preprocessor.remove_columns(X, cols_to_drop)
 
         except Exception:
             # logging the unsuccessful Training
