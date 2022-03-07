@@ -29,6 +29,10 @@ class trainModel:
             # if missing values are there, replace them appropriately.
             if (is_null_present):
                 X = preprocessor.impute_missing_values(X)  # missing value imputation
+#####################################################################################################
+            # check further which columns do not contribute to predictions
+            # if the standard deviation for a column is zero, it means that the column has constant values
+            cols_to_drop = preprocessor.get_columns_with_zero_std_deviation(X)
 
 
         except Exception:
