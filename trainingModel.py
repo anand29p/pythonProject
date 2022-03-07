@@ -1,5 +1,6 @@
 from application_logging.logger import App_Logger
 from data_ingestion.dataLoader import Data_Getter
+from data_preprocessing.clustering import KMeansClustering
 from data_preprocessing.preprocessing import Preprocessor
 
 
@@ -34,8 +35,15 @@ class trainModel:
             # if the standard deviation for a column is zero, it means that the column has constant values
             cols_to_drop = preprocessor.get_columns_with_zero_std_deviation(X)
             # drop the columns obtained above
+            # Major change
             if cols_to_drop:
                 X = preprocessor.remove_columns(X, cols_to_drop)
+######################################################################################################
+            """ Applying the clustering approach"""
+
+            kmeans = KMeansClustering(self.file_object, self.logger)  # object initialization.
+            number_of_clusters = kmeans.elbow_plot(X)  #  using the elbow plot to find the number of optimum clusters
+
 
         except Exception:
             # logging the unsuccessful Training
