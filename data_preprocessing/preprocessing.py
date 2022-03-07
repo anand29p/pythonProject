@@ -1,3 +1,6 @@
+import pandas as pd
+import numpy as np
+from sklearn.impute import KNNImputer
 
 class Preprocessor:
     def __init__(self, file_object, logger):
@@ -28,5 +31,38 @@ class Preprocessor:
             self.logger.log(self.file_object, 'Exception occured in separate_label_feature method of the Preprocessor class. Exception message:  ' + str(e))
             self.logger.log(self.file_object, 'Label Separation Unsuccessful. Exited the separate_label_feature method of the Preprocessor class')
             raise Exception()
+
+    def is_null_present(self, data_X):
+        self.logger.log(self.file_object, "Started checking if there is any null values in X")
+        self.null_present = False
+        try:
+            self.null_counts = data_X.isna().sum()
+            for i in self.null_counts:
+                if i>0:
+                    self.null_present = True
+                    break
+            return self.null_present
+        except Exception as e:
+            self.logger.log(self.file_object, 'Exception occured in is_null_present method of the Preprocessor class. Exception message:  ' + str(e))
+            self.logger.log(self.file_object, 'Finding missing values failed. Exited the is_null_present method of the Preprocessor class')
+            raise Exception()
+
+    def impute_missing_values(self, X):
+        self.logger.log(self.file_object, 'Entered the impute_missing_values method of the Preprocessor class')
+        self.data = X
+        try:
+            imputer = KNNImputer(n_neighbors=3, weights='uniform', missing_values=np.nan)
+            self.new_array = imputer.fit_transform(self.data)  # impute the missing values
+            # convert the nd-array returned in the step above to a Dataframe
+            self.new_data = pd.DataFrame(data=self.new_array, columns=self.data.columns)
+            self.logger.log(self.file_object, 'Imputing missing values Successful. Exited the impute_missing_values method of the Preprocessor class')
+            return self.new_data
+        except Exception as e:
+            self.logger.log(self.file_object,'Exception occured in impute_missing_values method of the Preprocessor class. Exception message:  ' + str(e))
+            self.logger.log(self.file_object,'Imputing missing values failed. Exited the impute_missing_values method of the Preprocessor class')
+            raise Exception()
+
+
+
 
 

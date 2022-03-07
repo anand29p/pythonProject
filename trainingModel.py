@@ -23,6 +23,14 @@ class trainModel:
             # create separate features and labels
             X, Y = preprocessor.separate_label_feature(data, label_column_name='Output')
 
+            # check if missing values are present in the dataset
+            is_null_present = preprocessor.is_null_present(X)
+
+            # if missing values are there, replace them appropriately.
+            if (is_null_present):
+                X = preprocessor.impute_missing_values(X)  # missing value imputation
+
+
         except Exception:
             # logging the unsuccessful Training
             self.logger.log(self.file_object, 'Unsuccessful End of Training')
