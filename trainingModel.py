@@ -44,6 +44,8 @@ class trainModel:
             kmeans = KMeansClustering(self.file_object, self.logger)  # object initialization.
             number_of_clusters = kmeans.elbow_plot(X)  #  using the elbow plot to find the number of optimum clusters
 
+            # Divide the data into clusters
+            X = kmeans.create_clusters(X, number_of_clusters)
 
         except Exception:
             # logging the unsuccessful Training

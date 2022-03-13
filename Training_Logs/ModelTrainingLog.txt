@@ -151,3 +151,23 @@
 2022-03-07/13:46:42		Column removal Successful.Exited the remove_columns method of the Preprocessor class
 2022-03-07/13:46:42		Entered the elbow_plot method of the KMeansClustering class
 2022-03-07/13:47:10		The optimum number of clusters is: 3 . Exited the elbow_plot method of the KMeansClustering class
+2022-03-13/17:25:19		Start of Training
+2022-03-13/17:25:19		Entered the get_data method of the Data_Getter class
+2022-03-13/17:25:21		Data Load Successful.Exited the get_data method of the Data_Getter class
+2022-03-13/17:25:21		Entered remove_column() method 
+2022-03-13/17:25:21		Column removal Successful.Exited the remove_columns method of the Preprocessor class
+2022-03-13/17:25:21		Process of separating X and Y value starts
+2022-03-13/17:25:21		Separated X and Y
+2022-03-13/17:25:21		Started checking if there is any null values in X
+2022-03-13/17:25:21		Entered the impute_missing_values method of the Preprocessor class
+2022-03-13/17:36:00		Imputing missing values Successful. Exited the impute_missing_values method of the Preprocessor class
+2022-03-13/17:36:00		Entered the get_columns_with_zero_std_deviation method of the Preprocessor class
+2022-03-13/17:36:02		Column search for Standard Deviation of Zero Successful. Exited the get_columns_with_zero_std_deviation method of the Preprocessor class
+2022-03-13/17:36:02		Entered remove_column() method 
+2022-03-13/17:36:02		Column removal Successful.Exited the remove_columns method of the Preprocessor class
+2022-03-13/17:36:02		Entered the elbow_plot method of the KMeansClustering class
+2022-03-13/17:36:34		The optimum number of clusters is: 3 . Exited the elbow_plot method of the KMeansClustering class
+2022-03-13/17:36:34		Entered the create_clusters method of the KMeansClustering class
+2022-03-13/17:36:37		Entered the save_model method of the Model class
+2022-03-13/17:36:37		Model File KMeans saved. Exited the save_model method of the Model_Finder class
+2022-03-13/17:36:37		successfully created 3clusters. Exited the create_clusters method of the KMeansClustering class
