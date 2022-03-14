@@ -2,7 +2,7 @@ from application_logging.logger import App_Logger
 from data_ingestion.dataLoader import Data_Getter
 from data_preprocessing.clustering import KMeansClustering
 from data_preprocessing.preprocessing import Preprocessor
-
+from sklearn.model_selection import train_test_split
 
 class trainModel:
     def __init__(self):
@@ -52,6 +52,19 @@ class trainModel:
 
             # getting the unique clusters from our dataset
             list_of_clusters = X['Cluster'].unique()
+
+            """parsing all the clusters and looking for the best ML algorithm to fit on individual cluster"""
+            for i in list_of_clusters:
+                cluster_data = X[X['Cluster'] == i]  # filter the data for one cluster
+
+                # Prepare the feature and Label columns
+                cluster_features = cluster_data.drop(['Labels', 'Cluster'], axis=1) #drop Labels and cluster columns
+                cluster_label = cluster_data['Labels']
+
+                # splitting the data into training and test set for each cluster one by one
+                x_train, x_test, y_train, y_test = train_test_split(cluster_features, cluster_label, test_size=1 / 3, random_state=355)
+
+
 
         except Exception:
             # logging the unsuccessful Training
