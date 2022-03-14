@@ -47,6 +47,12 @@ class trainModel:
             # Divide the data into clusters
             X = kmeans.create_clusters(X, number_of_clusters)
 
+            # create a new column in the dataset consisting of the corresponding cluster assignments.
+            X['Labels'] = Y
+
+            # getting the unique clusters from our dataset
+            list_of_clusters = X['Cluster'].unique()
+
         except Exception:
             # logging the unsuccessful Training
             self.logger.log(self.file_object, 'Unsuccessful End of Training')
